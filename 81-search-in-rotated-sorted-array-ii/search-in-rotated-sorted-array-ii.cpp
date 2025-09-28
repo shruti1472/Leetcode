@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool search(vector<int>& nums, int target) {
-        if(nums.empty()) return false;
+        
 
         int low=0;
         int high=nums.size()-1;
