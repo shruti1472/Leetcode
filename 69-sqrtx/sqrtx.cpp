@@ -5,11 +5,12 @@ public:
         int high=x;
         int ans=0;
         while(low<=high){
-            long long int mid=low+(high-low)/2;
-            if((mid*mid)==x){
+            int mid=low+(high-low)/2;
+            long long  square=(long long)mid*mid;
+            if(square==x){
                 return mid;
             }
-            else if((mid*mid)<x){
+            else if(square<x){
                 ans=mid;
                 low=mid+1;
             }
