@@ -1,13 +1,6 @@
 class Solution {
 
-// public:
-// long long count_hour(vector<int>& piles,int k){
-//             long long total_hour=0;
-//             for(int i=0;i<piles.size();i++){
-//                 total_hour+=(piles[i]+k-1/double(k));
-//             }
-//           return total_hour;
-//     }    
+
 public:
     int minEatingSpeed(vector<int>& piles, int h) {
 
