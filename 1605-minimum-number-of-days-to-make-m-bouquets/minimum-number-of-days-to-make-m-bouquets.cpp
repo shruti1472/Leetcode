@@ -1,15 +1,8 @@
 class Solution {
 public:
-    int minDays(vector<int>& bloomDay, int m, int k) {
-        
-        int low=*min_element(bloomDay.begin(),bloomDay.end());
-        int high=*max_element(bloomDay.begin(),bloomDay.end());
-        int ans=-1;
-        if ((long long)m * k > bloomDay.size()) return -1;
 
-        while(low<=high){
-          int mid=low+(high-low)/2;
-          int count=0;
+    bool canmake(vector<int>& bloomDay,int m,int k,int mid){
+        int count=0;
           int bounque=0;
           for(int i=0;i<bloomDay.size();i++){
             if(mid>=bloomDay[i]){
@@ -24,7 +17,19 @@ public:
                 count=0;
             }
           }
-          if(bounque>=m){
+          return(bounque>=m);
+    }
+    int minDays(vector<int>& bloomDay, int m, int k) {
+        
+        int low=*min_element(bloomDay.begin(),bloomDay.end());
+        int high=*max_element(bloomDay.begin(),bloomDay.end());
+        int ans=-1;
+        if ((long long)m * k > bloomDay.size()) return -1;
+
+        while(low<=high){
+          int mid=low+(high-low)/2;
+          
+          if(canmake(bloomDay,m,k,mid)){
             ans=mid;
             high=mid-1;
           }
