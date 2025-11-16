@@ -12,7 +12,7 @@ public:
         map['M'] = 1000;
 
          int result=0;
-         for(int i=0;i<n;i++){
+         for(int i=n-1;i>=0;i--){
              if( i+1<n && map[s[i]]<map[s[i+1]]){
                   result-=map[s[i]];
              }
