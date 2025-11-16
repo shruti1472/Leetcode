@@ -6,18 +6,18 @@ public:
         for(char c : s){
             map[c]++;
         }
-        
-        vector<vector<char>>bucket(n+1);
-      
-        for(auto &p:map){
-            bucket[p.second].push_back(p.first);
+
+        priority_queue<pair<int,char>>pq;
+        for(auto &p : map){
+            pq.push({p.second,p.first}); 
         }
+        
 
         string result="";
-        result.reserve(n);
-        for(int i =n;i>0;i--){
-            for(char c : bucket[i])
-            result.append(i,c);
+        while(!pq.empty()){
+            auto top=pq.top();
+            pq.pop();
+            result.append(top.first,top.second);
         }
         return result;
     }
