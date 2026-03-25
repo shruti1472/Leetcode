@@ -17,30 +17,19 @@ public:
         ListNode* temp3=dummy;
         int sum=0;
         int rem=0;
-        while(temp1!=nullptr && temp2!=nullptr){
-            sum=temp1->val+temp2->val;
-            temp3->next=new ListNode((sum+rem)%10);
-            rem=(sum+rem)/10;
-            temp1=temp1->next;
-            temp2=temp2->next;
+        while(temp1 || temp2 || rem){
+            sum=rem;
+            if(temp1){
+             sum+=temp1->val;
+             temp1=temp1->next;
+            }
+            if(temp2){
+             sum+=temp2->val;
+             temp2=temp2->next;
+            }
+            temp3->next=new ListNode(sum%10);
+            rem=sum/10;
             temp3=temp3->next;
-        }
-        while(temp1!=nullptr){
-          sum=temp1->val;
-          temp3->next=new ListNode((sum+rem)%10);
-          rem=(sum+rem)/10;
-          temp3=temp3->next;
-          temp1=temp1->next;
-        }
-         while(temp2!=nullptr){
-          sum=temp2->val;
-          temp3->next=new ListNode((sum+rem)%10);
-          rem=(sum+rem)/10;
-          temp3=temp3->next;
-          temp2=temp2->next;
-        }
-        if(rem!=0){
-            temp3->next=new ListNode(rem);
         }
         return dummy->next;
     }
