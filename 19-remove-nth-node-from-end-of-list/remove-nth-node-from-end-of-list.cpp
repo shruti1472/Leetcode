@@ -19,28 +19,18 @@ public:
             delete temp;
             return nullptr;
         }
-        ListNode* temp=head;
-        int cnt=0;
-        while(temp!=nullptr){
-            cnt++;
-            temp=temp->next;
-        }
-        if(cnt==n){
-            ListNode* newhead=head->next;
-            delete head;
-            return newhead;
+        ListNode* dummy=new ListNode(0,head);
+        ListNode* fast=dummy;
+        ListNode* slow=dummy;
+        for(int i=0;i<n;i++)  fast=fast->next;
 
+        while(fast->next!=nullptr){
+            fast=fast->next;
+            slow=slow->next;
         }
-        temp=head;
-        int index=cnt-n;
-        int i =1;
-        while(temp!=nullptr && i<index){
-            temp=temp->next;
-            i++;
-        }
-        ListNode* delnode=temp->next;
-        temp->next=delnode->next;
+        ListNode* delnode=slow->next;
+        slow->next=delnode->next;
         delete delnode;
-        return head;
+        return dummy->next;
     }
 };
