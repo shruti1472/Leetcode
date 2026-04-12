@@ -10,34 +10,7 @@
  */
 class Solution {
 public:
-   ListNode* merge(ListNode* l1,ListNode* l2){
-    ListNode* temp1=l1;
-    ListNode* temp2=l2;
-    ListNode* dummy = new ListNode(-1);
-    ListNode* temp=dummy;
-    while(temp1 && temp2){
-        if(temp1->val < temp2->val){
-            temp->next=temp1;
-            temp1=temp1->next;
-        }
-        else{
-            temp->next=temp2;
-            temp2=temp2->next;
-        }
-        temp=temp->next;
-    }
-    while(temp1){
-        temp->next=temp1;
-        temp=temp->next;
-        temp1=temp1->next;
-    }
-    while(temp2){
-        temp->next=temp2;
-        temp=temp->next;
-        temp2=temp2->next;
-    }
-    return dummy->next;
-}
+  
 
 ListNode* sortList(ListNode* head){
     if(head==nullptr || head->next==nullptr) return head;
@@ -53,5 +26,22 @@ ListNode* sortList(ListNode* head){
     ListNode* right=sortList(mid);
     ListNode* sorted=merge(left,right);
     return sorted;
+}
+ ListNode* merge(ListNode* l1,ListNode* l2){
+    ListNode* dummy = new ListNode(-1);
+    ListNode* temp=dummy;
+    while(l1 && l2){
+        if(l1->val < l2->val){
+            temp->next=l1;
+            l1=l1->next;
+        }else{
+            temp->next=l2;
+            l2=l2->next;
+        }
+        temp=temp->next;
+    }
+    if(l1) temp->next=l1;
+    if(l2) temp->next=l2;
+    return dummy->next;
 }
 };
