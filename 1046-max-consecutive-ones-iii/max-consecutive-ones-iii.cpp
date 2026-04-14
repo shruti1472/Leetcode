@@ -6,14 +6,11 @@ public:
         int zerocount=0;
         while(j<nums.size()){
             if(nums[j]==0) zerocount++;
-            while(zerocount>k){
-                if(nums[i]==0){
-                    zerocount--;
-        
-                }
+            if(zerocount>k){
+                if(nums[i]==0) zerocount--; 
                 i++;
-            }
-            maxlen=max(maxlen,j-i+1);
+            } 
+            if(zerocount<=k)  maxlen=max(maxlen,j-i+1);         
             j++;
         }
         return maxlen;
