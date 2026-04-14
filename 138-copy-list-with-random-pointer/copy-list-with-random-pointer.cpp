@@ -39,11 +39,14 @@ public:
         Node* dummy1=dummy;
         temp=head;
         while(temp!=nullptr){
-            Node* connected=temp->next;
-            dummy1->next=connected;
-            temp->next=connected->next;
-            temp=temp->next;
+            Node* copy=temp->next;
+            
+            dummy1->next=copy;
             dummy1=dummy1->next;
+
+            temp->next=copy->next;
+            temp=temp->next;
+            
         }
         return dummy->next;
     }
