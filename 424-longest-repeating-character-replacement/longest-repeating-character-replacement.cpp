@@ -10,11 +10,11 @@ public:
             freq[s[j]-'A']++;
             maxfreq=max(maxfreq,freq[s[j]-'A']);
             length=j-i+1;
-            if(length-maxfreq<=k) maxlen=max(maxlen,length);
-            else{
+            if(length-maxfreq>k) {
                 freq[s[i]-'A']--;
                 i++;
             }
+            if(length-maxfreq<=k) maxlen=max(maxlen,length);
             j++;
         }
         return maxlen;
