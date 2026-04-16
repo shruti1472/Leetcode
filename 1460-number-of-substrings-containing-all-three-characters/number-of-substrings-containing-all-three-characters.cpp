@@ -2,7 +2,7 @@ class Solution {
 public:
     int numberOfSubstrings(string s) {
         int count=0;
-        int a[3]={0};
+        vector<int> a(3, 0);
         int i=0,j=0;
         while(j<s.size()){
             a[s[j]-'a']++;
