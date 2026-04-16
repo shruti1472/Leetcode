@@ -1,7 +1,23 @@
 class Solution {
 public:
-    int numberOfSubarrays(vector<int>& nums, int k) {
 
+    int countlessthanequal(vector<int>nums,int k){
+        int l=0,r=0;
+        int sum=0;
+        int count=0;
+        while(r<nums.size()){
+            sum+=nums[r];
+            while(sum>k){
+                sum-=nums[l];
+                l++;
+            }
+            count+=r-l+1;
+            r++;
+        }
+        return count;
+    }
+
+    int numberOfSubarrays(vector<int>& nums, int k) {
         for(int i=0;i<nums.size();i++){
             if(nums[i]%2==0){
                 nums[i]=0;
@@ -10,17 +26,6 @@ public:
                 nums[i]=1;
             }
         }
-       int count=0;
-       unordered_map<int,int>mp;
-       mp[0]=1;
-       int sum=0;
-       for(int j=0;j<nums.size();j++){
-        sum+=nums[j];
-        if(mp.find(sum-k)!=mp.end()){
-            count+=mp[sum-k];
-        }
-        mp[sum]++;
-       }
-        return count;
+        return countlessthanequal(nums,k)-countlessthanequal(nums,k-1);
     }
 };
