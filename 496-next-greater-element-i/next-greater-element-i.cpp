@@ -12,9 +12,9 @@ public:
 
             st.push(nums2[i]);
         }
-        vector<int>ans(nums1.size(),-1);
+        vector<int>ans;
         for(int i=0;i<nums1.size();i++){
-             ans[i]=hash[nums1[i]];
+             ans.push_back(hash[nums1[i]]);
         }
     return ans;
     }
