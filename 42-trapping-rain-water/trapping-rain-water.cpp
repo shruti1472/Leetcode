@@ -1,20 +1,29 @@
 class Solution {
 public:
-    int trap(vector<int>& h) {
-        int sum=0;
-        int n=h.size();
-        vector<int>prefix(n);
-
-        prefix[0]=h[0];
-        for(int i=1;i<n;i++){
-            prefix[i]=max(prefix[i-1],h[i]);
+    int trap(vector<int>& arr) {
+        int total=0;
+        int lmax=0,rmax=0;
+        int l=0,r=arr.size()-1;
+        while(l<r){
+            if(arr[l]<=arr[r]){
+                if(lmax>arr[l]){
+                    total+=lmax-arr[l];
+                }
+                else{
+                    lmax=arr[l];
+                }
+                l++;
+            }
+            else{
+                if(rmax>arr[r]){
+                    total+=rmax-arr[r];
+                }
+                else{
+                    rmax=arr[r];
+                }
+                r--;
+            }
         }
-
-        int rightmax=0;
-        for(int i=n-1;i>=0;i--){
-           rightmax=max(rightmax,h[i]);
-           sum+=min(prefix[i],rightmax)-h[i];
-        }
-        return sum;
+        return total;
     }
 };
