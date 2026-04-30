@@ -23,6 +23,7 @@ public:
     }
 
     int maximalRectangle(vector<vector<char>>& matrix) {
+         if(matrix.empty()) return 0;
         int row=matrix.size();
         int cols=matrix[0].size();
         vector<int>heights(cols,0);
@@ -36,8 +37,8 @@ public:
                     heights[j]=0;
                 }
             }
-            int large=largestRectangleArea(heights);
-            maxi=max(large,maxi);
+            maxi=max(maxi,largestRectangleArea(heights));
+           
         }
     return maxi;
         
